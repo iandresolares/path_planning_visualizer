@@ -3,6 +3,7 @@ from path_planners.simple_planner import SimplePlanner
 from grid import Grid
 from common import CellType
 
+
 if __name__ == "__main__":
     SIZE = 50
     PATH_SIZE = 20

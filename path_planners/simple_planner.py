@@ -1,24 +1,33 @@
 from path_planners.path_planner_interface import PathPlannerInterface
+from common import Direction
 
 
 class SimplePlanner(PathPlannerInterface):
     def calculate_path(self):
         current = self.start
-        cont = 0
+        print(current)
         while current != self.goal:
-            cont += 1
-            if cont == 1000:
-                return
-            if self.goal[0] > current[0]:
-                current = (current[0] + 1, current[1])
-                self.path.append(current)
-            elif self.goal[0] < current[0]:
-                current = (current[0] - 1, current[1])
-                self.path.append(current)
-            if self.goal[1] > current[1]:
-                current = (current[0], current[1] + 1)
-                self.path.append(current)
-            elif self.goal[1] < current[1]:
-                current = (current[0], current[1] - 1)
-                self.path.append(current)
+            if self.goal.x > current.x:
+                current.x, current.y = (current.x + 1, current.y)
+                self.path.append((current.x, current.y))
+            elif self.goal.x < current.x:
+                current.x, current.y = (current.x - 1, current.y)
+                self.path.append((current.x, current.y))
+            if self.goal.y > current.y:
+                current.x, current.y = (current.x, current.y + 1)
+                self.path.append((current.x, current.y))
+            elif self.goal.y < current.y:
+                current.x, current.y = (current.x, current.y - 1)
+                self.path.append((current.x, current.y))
             print(current)
+
+    # def calculate_path(self):
+    #     current = self.start
+
+    #     while current != self.goal:
+    #         for direction in Direction:
+    #             pass
+
+    # def calculate_goal_direction(self, current_cell):
+    #     res = self.goal - current_cell
+    #     if res
