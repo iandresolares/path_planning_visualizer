@@ -14,6 +14,9 @@ class Cell:
     x: int
     y: int
 
+    def __call__(self):
+        return self.x, self.y
+
 
 class Direction(int, Enum):
     TOP = auto()

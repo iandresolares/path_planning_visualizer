@@ -1,26 +1,37 @@
 import pandas as pd
 from matplotlib import pyplot
+import math
+
+# SIZE = 10
+
+# matrix = pd.DataFrame(
+#     [[0 for _ in range(0, SIZE)] for _ in range(0, SIZE)],
+#     index=[i for i in range(SIZE - 1, -1, -1)],
+# )
+
+# matrix[1][1] = 1
+# print(matrix)
 
 
-SIZE = 10
+# pyplot.figure(figsize=(10, 10))
+# pyplot.imshow(matrix, origin="lower")
+# x = [0, 1, 2, 3, 4]
+# y = [0, 1, 2, 3, 4]
+# y = [SIZE - 1 - i for i in y]
+# c = [i for i in range(len(x))]
+# pyplot.scatter(x, y, s=len(x), c=c)
+# ay = pyplot.gca()
+# ay.set_ylim(ay.get_ylim()[::-1])
 
-matrix = pd.DataFrame(
-    [[0 for _ in range(0, SIZE)] for _ in range(0, SIZE)],
-    index=[i for i in range(SIZE - 1, -1, -1)],
-)
+# pyplot.show()
 
-matrix[1][1] = 1
-print(matrix)
+from common import Cell
 
+# goal = Cell(2, 2)
+# current = Cell(2, 1)
 
-pyplot.figure(figsize=(10, 10))
-pyplot.imshow(matrix, origin="lower")
-x = [0, 1, 2, 3, 4]
-y = [0, 1, 2, 3, 4]
-y = [SIZE - 1 - i for i in y]
-c = [i for i in range(len(x))]
-pyplot.scatter(x, y, s=len(x), c=c)
-ay = pyplot.gca()
-ay.set_ylim(ay.get_ylim()[::-1])
+# angle = math.atan2((goal.y - current.y), (goal.x - current.x))
+# deg = math.degrees(angle)
+# print(deg)
 
-pyplot.show()
+x, y = Cell(1, 2)

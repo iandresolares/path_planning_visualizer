@@ -7,7 +7,7 @@ from common import Cell
 
 
 class PathPlannerInterface(ABC):
-    def __init__(self, start: Cell, goal: Cell, path_size, grid: Grid):
+    def __init__(self, start: Cell, goal: Cell, path_size: int, grid: Grid):
         self.start = start
         self.goal = goal
         self.path_size = path_size
