@@ -17,7 +17,7 @@ class PathPlannerInterface(ABC):
 
     def display_path(self):
         x = [cell[0] for cell in self.path]
-        y = [cell[1] for cell in self.path]
+        y = [self.grid.size - 1 - cell[1] for cell in self.path]
         c = [i for i in range(len(self.path))]
         pyplot.scatter(x, y, s=self.path_size, c=c, cmap=self.color_map)
 

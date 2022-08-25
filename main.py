@@ -5,7 +5,7 @@ from common import CellType
 
 
 if __name__ == "__main__":
-    SIZE = 50
+    SIZE = 10
     PATH_SIZE = 20
 
     grid = Grid(SIZE)
@@ -17,3 +17,4 @@ if __name__ == "__main__":
     planner = SimplePlanner(start_cell, goal_cell, path_size=PATH_SIZE, grid=grid)
     planner.calculate_path()
     grid.display(display_path=planner.display_path)
+    print(grid.matrix)
