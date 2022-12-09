@@ -1,5 +1,6 @@
 from functools import partial
 import math
+from typing import Tuple
 
 
 # * Custom imports
@@ -9,25 +10,53 @@ from grid import Grid
 
 
 class BugPlanner(PathPlannerInterface):
-    def __init__(self, start: Cell, goal: Cell, path_size: int, grid: Grid):
-        super().__init__(start, goal, path_size, grid)
+    # def __init__(self, start: Cell, goal: Cell, path_size: int, grid: Grid):
+    #     super().__init__(start, goal, path_size, grid)
 
     def calculate_path(self):
+        cont = 0
+        last = None
         current = self.start
         while current != self.goal:
             goal_direction = self.get_goal_direction(current)
-            print(goal_direction)
+            print(f"Goal direction: {goal_direction}")
+            if cont >= 1:
+                print("I'm stuck")
+                return
             for direction in goal_direction:
                 obstacle, cell = self.check_obstacle(current, direction)
-                if not obstacle:
+                if not obstacle and cell != last:
+                    if cell == last:
+                        cont += 1
+                    else:
+                        cont = 0
+                    last = current
                     current = cell
                     self.path.append((current.x, current.y))
                     print(current)
-                else:
-                    # TODO !!!
-                    pass
+                    break
+            else:
+                print("DIRECTION: ", goal_direction)
+                for alternative_direction in Direction:
+                    if alternative_direction in goal_direction:
+                        continue
+                    obstacle, cell = self.check_obstacle(current, alternative_direction)
+                    if not obstacle:
+                        if cell == last:
+                            cont += 1
+                        else:
+                            cont = 0
+                        last = current
+                        current = cell
+                        self.path.append((current.x, current.y))
+                        print(current)
+                        break
 
-    def check_obstacle(self, cell: Cell, direction: Direction) -> bool:
+                else:
+                    print("No alternative direction found")
+                    return
+
+    def check_obstacle(self, cell: Cell, direction: Direction) -> Tuple[bool, Cell]:
         """Returns True if there is an obstacle"""
         x, y = cell.x, cell.y
         if direction == Direction.RIGHT:
@@ -45,6 +74,8 @@ class BugPlanner(PathPlannerInterface):
             math.atan2((self.goal.y - current_cell.y), (self.goal.x - current_cell.x))
         )
         print(angle)
+        if angle < 0:
+            angle += 360
         # * First quadrant
         if angle > 0 and angle < 90:
             return [Direction.RIGHT, Direction.TOP]
@@ -59,9 +90,9 @@ class BugPlanner(PathPlannerInterface):
         elif angle == 90:
             return [Direction.TOP]
         elif angle == 180:
-            return Direction.LEFT
+            return [Direction.LEFT]
         elif angle == 270:
-            return Direction.BOTTOM
+            return [Direction.BOTTOM]
 
     # def calculate_path(self):
     #     args = []
@@ -101,3 +132,14 @@ class BugPlanner(PathPlannerInterface):
     #         y_dir = None
 
     #     return x_dir, y_dir
+
+
+# get a list of items an enum class
+
+# from enum import Enum
+# class Direction(Enum):
+#     TOP = 1
+#     BOTTOM = 2
+
+
+# def get_enum_list(enum_class):

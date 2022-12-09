@@ -17,8 +17,8 @@ class Grid:
             [[0 for _ in range(0, self.size)] for _ in range(0, self.size)],
             index=[i for i in range(self.size - 1, -1, -1)],
         )
-        self.obstacle_base_probability = 0.2
-        self.obstacle_next_probablity = 0.1
+        self.obstacle_base_probability = 0.05
+        self.obstacle_next_probablity = 0.4
         self.cell_posibilites = [CellType.EMPTY, CellType.OBSTACLE]
         self.color_map = ListedColormap(["white", "black", "lightblue", "red"])
 

@@ -3,6 +3,8 @@ from common import Direction
 
 
 class SimplePlanner(PathPlannerInterface):
+    # create a method which calculates a path from start to goal using dikstra's algorithm
+
     def calculate_path(self):
         current = self.start
         print(current)
