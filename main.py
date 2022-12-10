@@ -7,6 +7,10 @@ from path_planners.simple_planner import SimplePlanner
 from grid import Grid
 from common import CellType
 
+from custom_logger import get_logger
+
+logger = get_logger(__name__)
+
 
 # function which read a config.yaml file and prints its content
 def read_config(file_path: str):
@@ -25,8 +29,8 @@ if __name__ == "__main__":
     grid.generate_obstacles()
     start_cell = grid.generate_cell(CellType.START)
     goal_cell = grid.generate_cell(CellType.GOAL)
-    print(f"START: {start_cell}")
-    print(f"GOAL: {goal_cell}")
+    logger.info(f"START: {start_cell}")
+    logger.info(f"GOAL: {goal_cell}")
     # planner = SimplePlanner(start_cell, goal_cell, path_size=PATH_SIZE, grid=grid)
     planner = BugPlanner(
         planner_config=config["planner"],

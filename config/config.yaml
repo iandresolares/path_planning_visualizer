@@ -11,3 +11,5 @@ logger:
   terminal_logging: True
   file_logging: False
   file_path: ./logs.log
+  independent_file_error_logging: False
+  file_error_logging: ./errors.log

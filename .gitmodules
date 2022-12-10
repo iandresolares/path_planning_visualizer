@@ -1,0 +1,3 @@
+[submodule "custom_logger"]
+	path = custom_logger
+	url = https://github.com/iandresolares/custom_logger.git
