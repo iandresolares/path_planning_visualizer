@@ -1,0 +1,13 @@
+grid:
+  map_size: 50
+  obstacles:
+    base_probability: 0.05
+    neighbour_probability: 0.4
+planner:
+  algorithm: bug
+  path_size: 50
+logger:
+  level: debug
+  terminal_logging: True
+  file_logging: False
+  file_path: ./logs.log

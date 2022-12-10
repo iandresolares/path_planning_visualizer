@@ -10,15 +10,17 @@ from common import CellType, Cell
 
 
 class Grid:
-    def __init__(self, size: int):
-        self.size = size
+    def __init__(self, grid_config: dict):
+        self.size = grid_config["map_size"]
         # self.matrix = [[0 for _ in range(0, self.size)] for _ in range(0, self.size)]
         self.matrix = pd.DataFrame(
             [[0 for _ in range(0, self.size)] for _ in range(0, self.size)],
             index=[i for i in range(self.size - 1, -1, -1)],
         )
-        self.obstacle_base_probability = 0.05
-        self.obstacle_next_probablity = 0.4
+        self.obstacle_base_probability = grid_config["obstacles"]["base_probability"]
+        self.obstacle_next_probablity = grid_config["obstacles"][
+            "neighbour_probability"
+        ]
         self.cell_posibilites = [CellType.EMPTY, CellType.OBSTACLE]
         self.color_map = ListedColormap(["white", "black", "lightblue", "red"])
 

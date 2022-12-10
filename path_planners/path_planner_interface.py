@@ -7,10 +7,10 @@ from common import Cell
 
 
 class PathPlannerInterface(ABC):
-    def __init__(self, start: Cell, goal: Cell, path_size: int, grid: Grid):
+    def __init__(self, planner_config: dict, start: Cell, goal: Cell, grid: Grid):
         self.start = start
         self.goal = goal
-        self.path_size = path_size
+        self.path_size = planner_config["path_size"]
         self.path = []
         self.color_map = "Dark2"
         self.grid = grid
